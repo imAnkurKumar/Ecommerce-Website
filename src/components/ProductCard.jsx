@@ -1,12 +1,19 @@
 import { Card, Button } from "react-bootstrap";
+import { useContext } from "react";
+import { CartContext } from "../context/CartContext";
 
 function ProductCard({ product }) {
+    const { addToCart } = useContext(CartContext);
+
     return (
         <Card className="h-100 shadow-sm">
             <Card.Img
                 variant="top"
                 src={product.imageUrl}
-                style={{ height: "250px", objectFit: "cover" }}
+                style={{
+                    height: "250px",
+                    objectFit: "cover",
+                }}
             />
 
             <Card.Body className="text-center">
@@ -16,7 +23,10 @@ function ProductCard({ product }) {
                     <strong>₹ {product.price}</strong>
                 </Card.Text>
 
-                <Button variant="primary">
+                <Button
+                    variant="primary"
+                    onClick={() => addToCart(product)}
+                >
                     Add To Cart
                 </Button>
             </Card.Body>

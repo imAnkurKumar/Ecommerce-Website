@@ -1,10 +1,18 @@
 import { Navbar, Nav, Container, Button } from "react-bootstrap";
+import { useContext } from "react";
+import { CartContext } from "../context/CartContext";
 
 function Header({ handleShowCart }) {
+    const { cartElements } = useContext(CartContext);
+
+    const cartQuantity = cartElements.reduce(
+        (total, item) => total + item.quantity,
+        0
+    );
+
     return (
         <Navbar bg="dark" variant="dark">
             <Container>
-
                 <Navbar.Brand>E-Commerce</Navbar.Brand>
 
                 <Nav className="mx-auto">
@@ -17,9 +25,8 @@ function Header({ handleShowCart }) {
                     variant="outline-light"
                     onClick={handleShowCart}
                 >
-                    Cart
+                    Cart ({cartQuantity})
                 </Button>
-
             </Container>
         </Navbar>
     );
