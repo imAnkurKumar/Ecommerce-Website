@@ -1,4 +1,5 @@
 import { Navbar, Nav, Container, Button } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 
@@ -13,12 +14,22 @@ function Header({ handleShowCart }) {
     return (
         <Navbar bg="dark" variant="dark">
             <Container>
-                <Navbar.Brand>E-Commerce</Navbar.Brand>
+                <Navbar.Brand as={NavLink} to="/">
+                    E-Commerce
+                </Navbar.Brand>
 
                 <Nav className="mx-auto">
-                    <Nav.Link>Home</Nav.Link>
-                    <Nav.Link>Store</Nav.Link>
-                    <Nav.Link>About</Nav.Link>
+                    <Nav.Link as={NavLink} to="/">
+                        Home
+                    </Nav.Link>
+
+                    <Nav.Link as={NavLink} to="/">
+                        Store
+                    </Nav.Link>
+
+                    <Nav.Link as={NavLink} to="/about">
+                        About
+                    </Nav.Link>
                 </Nav>
 
                 <Button

@@ -1,6 +1,9 @@
 import { useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import Header from "./components/Header";
 import Store from "./pages/Store";
+import About from "./pages/About";
 import Cart from "./components/Cart";
 
 function App() {
@@ -15,16 +18,19 @@ function App() {
   };
 
   return (
-    <>
+    <BrowserRouter>
       <Header handleShowCart={handleShowCart} />
 
-      <Store />
+      <Routes>
+        <Route path="/" element={<Store />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
 
       <Cart
         show={showCart}
         handleClose={handleCloseCart}
       />
-    </>
+    </BrowserRouter>
   );
 }
 
