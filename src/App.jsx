@@ -10,6 +10,7 @@ import Store from "./pages/Store";
 import About from "./pages/About";
 import Home from "./pages/Home";
 import Cart from "./components/Cart";
+import Contact from "./pages/Contact";
 
 function App() {
   const [showCart, setShowCart] = useState(false);
@@ -28,10 +29,9 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
-
         <Route path="/store" element={<Store />} />
-
         <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
 
       <Cart
