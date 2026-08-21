@@ -65,7 +65,7 @@ function Login() {
 
             console.log("Login successful:", data);
 
-            login(data.idToken);
+            login(data.idToken, data.email);
 
             navigate("/store");
 

@@ -1,14 +1,24 @@
 import { Offcanvas } from "react-bootstrap";
 import { useContext } from "react";
+
 import { CartContext } from "../context/CartContext";
+
 import CartItem from "./CartItem";
 
 function Cart({ show, handleClose }) {
-    const { cartElements } = useContext(CartContext);
+    const {
+        cartElements,
+        fetchCart,
+    } = useContext(CartContext);
+
+    const handleCartOpen = () => {
+        fetchCart();
+    };
 
     return (
         <Offcanvas
             show={show}
+            onShow={handleCartOpen}
             onHide={handleClose}
             placement="end"
         >
@@ -24,7 +34,7 @@ function Cart({ show, handleClose }) {
                 ) : (
                     cartElements.map((item) => (
                         <CartItem
-                            key={item.title}
+                            key={item._id || item.title}
                             item={item}
                         />
                     ))

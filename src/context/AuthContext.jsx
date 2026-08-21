@@ -7,22 +7,31 @@ export const AuthProvider = ({ children }) => {
         localStorage.getItem("token")
     );
 
-    const login = (token) => {
+    const [email, setEmail] = useState(
+        localStorage.getItem("email")
+    );
+
+    const login = (token, email) => {
         setToken(token);
+        setEmail(email);
 
         localStorage.setItem("token", token);
+        localStorage.setItem("email", email);
     };
 
     const logout = () => {
         setToken(null);
+        setEmail(null);
 
         localStorage.removeItem("token");
+        localStorage.removeItem("email");
     };
 
     return (
         <AuthContext.Provider
             value={{
                 token,
+                email,
                 login,
                 logout,
                 isLoggedIn: !!token,
