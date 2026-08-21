@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { Container, Row, Col, Image } from "react-bootstrap";
 import { productsArr } from "../data/products";
@@ -7,6 +8,10 @@ function ProductDetails() {
 
     const product = productsArr.find(
         (item) => item.id === productId
+    );
+
+    const [selectedImage, setSelectedImage] = useState(
+        product?.imageUrl
     );
 
     if (!product) {
@@ -19,60 +24,90 @@ function ProductDetails() {
 
     return (
         <Container className="py-5">
+
+            {/* Product section */}
             <Row>
+
+                {/* Images */}
                 <Col md={6}>
-                    <Image
-                        src={product.imageUrl}
-                        fluid
-                    />
-                </Col>
 
-                <Col md={6}>
-                    <h1>{product.title}</h1>
+                    {/* Main Image */}
+                    <div className="text-center mb-4">
+                        <Image
+                            src={selectedImage}
+                            fluid
+                            style={{
+                                maxHeight: "450px",
+                                objectFit: "contain",
+                            }}
+                        />
+                    </div>
 
-                    <h3>₹ {product.price}</h3>
+                    {/* Thumbnail Images */}
+                    <div className="d-flex justify-content-center gap-3">
 
-                    <h4 className="mt-4">
-                        Product Images
-                    </h4>
-
-                    <div className="d-flex gap-3">
                         {product.images.map((image, index) => (
                             <Image
                                 key={index}
                                 src={image}
                                 thumbnail
+                                onClick={() => setSelectedImage(image)}
                                 style={{
                                     width: "100px",
                                     height: "100px",
                                     objectFit: "cover",
+                                    cursor: "pointer",
                                 }}
                             />
                         ))}
+
                     </div>
+
                 </Col>
+
+                {/* Product information */}
+                <Col md={6}>
+
+                    <h1>{product.title}</h1>
+
+                    <h3 className="mt-3">
+                        ₹ {product.price}
+                    </h3>
+
+                </Col>
+
             </Row>
 
+            {/* Reviews */}
             <hr className="my-5" />
 
             <h2 className="text-center mb-4">
                 Reviews
             </h2>
 
-            {product.reviews.map((review) => (
-                <div
-                    key={review.id}
-                    className="border rounded p-3 mb-3"
-                >
-                    <h5>{review.name}</h5>
+            <Row>
+                <Col md={8} className="mx-auto">
 
-                    <p>
-                        {"⭐".repeat(review.rating)}
-                    </p>
+                    {product.reviews.map((review) => (
+                        <div
+                            key={review.id}
+                            className="border rounded p-3 mb-3"
+                        >
+                            <h5>{review.name}</h5>
 
-                    <p>{review.comment}</p>
-                </div>
-            ))}
+                            <p className="mb-2">
+                                {"⭐".repeat(review.rating)}
+                            </p>
+
+                            <p className="mb-0">
+                                {review.comment}
+                            </p>
+                        </div>
+                    ))}
+
+                </Col>
+            </Row>
+
         </Container>
     );
 }

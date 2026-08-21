@@ -50,11 +50,19 @@ function Header({ handleShowCart }) {
                     >
                         About
                     </Nav.Link>
+
                     <Nav.Link
                         as={NavLink}
                         to="/contact"
                     >
                         Contact Us
+                    </Nav.Link>
+
+                    <Nav.Link
+                        as={NavLink}
+                        to="/login"
+                    >
+                        Login
                     </Nav.Link>
 
                 </Nav>

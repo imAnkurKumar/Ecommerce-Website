@@ -12,6 +12,7 @@ import Home from "./pages/Home";
 import Cart from "./components/Cart";
 import Contact from "./pages/Contact";
 import ProductDetails from "./pages/ProductDetails";
+import Login from "./pages/Login";
 
 function App() {
   const [showCart, setShowCart] = useState(false);
@@ -29,13 +30,30 @@ function App() {
       <Header handleShowCart={handleShowCart} />
 
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route
+          path="/"
+          element={<Home />}
+        />
 
-        <Route path="/store" element={<Store />} />
+        <Route
+          path="/store"
+          element={<Store />}
+        />
 
-        <Route path="/about" element={<About />} />
+        <Route
+          path="/about"
+          element={<About />}
+        />
 
-        <Route path="/contact" element={<Contact />} />
+        <Route
+          path="/contact"
+          element={<Contact />}
+        />
+
+        <Route
+          path="/login"
+          element={<Login />}
+        />
 
         <Route
           path="/product/:productId"
