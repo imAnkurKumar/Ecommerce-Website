@@ -13,6 +13,7 @@ import Cart from "./components/Cart";
 import Contact from "./pages/Contact";
 import ProductDetails from "./pages/ProductDetails";
 import Login from "./pages/Login";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   const [showCart, setShowCart] = useState(false);
@@ -37,7 +38,11 @@ function App() {
 
         <Route
           path="/store"
-          element={<Store />}
+          element={
+            <ProtectedRoute>
+              <Store />
+            </ProtectedRoute>
+          }
         />
 
         <Route
